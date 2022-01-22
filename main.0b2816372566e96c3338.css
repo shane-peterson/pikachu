@@ -1,3 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "Avenir Next", "Avenir", sans-serif;
+    height: 100%;
+    overflow: hidden;
+}
+
+#menuToggle {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-top: 50px;
+    margin-left: 50px;
+
+    z-index: 11;
+    user-select: none;
+}
+
+#menuToggle input {
+    display: none;
+}
+
+#menuToggle #menu {
+    border-radius: 5px;
+    position: absolute;
+    width: 200px;
+    padding: 65px 50px 50px 50px;
+    list-style-type: none;
+    background: #ededed;
+    -webkit-font-smoothing: antialiased;
+    transform-origin: 0 0;
+}
+
+#menuToggle #menu li {
+    margin: 10px 0;
+    padding: 10px 0;
+    font-size: 22px;
+    text-transform: capitalize;
+}
+
+@media (min-width: 500px) {
+    #menuToggle #menu {
+        margin: 0 0 0 -50px;
+        opacity: 0;
+        transform: translate(-50%, 0);
+        transition: transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    #menuToggle #menu:hover {
+        opacity: 1;
+        transform: none;
+    }
+
+    #menuToggle #menu li {
+        color: #232323;
+        transition: color 0.3s ease;
+        cursor: pointer;
+    }
+
+    #menuToggle #menu li:hover {
+        color: tomato;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    #menuToggle input {
+        display: block;
+        width: 40px;
+        height: 32px;
+        position: absolute;
+        top: -5px;
+        left: -70px;
+        opacity: 0;
+        z-index: 12;
+        -webkit-touch-callout: none;
+    }
+
+
+    #menuToggle span {
+        display: block;
+        width: 33px;
+        height: 4px;
+        margin-left: -70px;
+        margin-bottom: 5px;
+        position: relative;
+
+        background: #cdcdcd;
+        border-radius: 3px;
+
+        z-index: 11;
+
+        transform-origin: 4px 0;
+
+        transition: transform 0.3s linear,
+        background 0.3s linear,
+        opacity 0.3s linear,
+        margin-left 0.3s linear;
+    }
+
+
+    #menuToggle span:nth-last-child(2) {
+        transform-origin: 0 100%;
+    }
+
+
+    #menuToggle input:checked ~ span {
+        opacity: 1;
+        transform: rotate(45deg) translate(-2px, -1px);
+        background: #232323;
+    }
+
+    #menuToggle input:checked ~ span:nth-last-child(3) {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.2, 0.2);
+    }
+
+
+    #menuToggle input:checked ~ span:nth-last-child(2) {
+        transform: rotate(-45deg) translate(0, -1px);
+    }
+
+
+    #menuToggle #menu {
+        margin: -50px 0 0 -50px;
+        transform: translate(-100%, 0);
+        transition: transform 0.3s linear;
+    }
+
+    #menuToggle input:checked {
+        left: 100px
+    }
+
+    #menuToggle input:checked ~ span {
+        margin-left: 100px;
+
+    }
+
+    #menuToggle input:checked ~ #menu {
+        transform: none;
+    }
+}
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(15deg);
+
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+
+}
+
+@media (max-width: 500px) {
+    #sidebar {
+        opacity: 1;
+    }
+}
+
+#rain .rain {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+#rain .rain.back-row {
+    display: block;
+    z-index: 1;
+    bottom: 60px;
+    opacity: 0.5;
+}
+
+#rain .rain.front-row {
+    bottom: 0;
+}
+
+#rain .rain .drop {
+    position: absolute;
+    bottom: 100%;
+    width: 15px;
+    height: 120px;
+    animation: drop 0.5s linear infinite;
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(0vh);
+    }
+    75% {
+        transform: translateY(90vh);
+    }
+    100% {
+        transform: translateY(90vh);
+    }
+}
+
+#rain .rain .stem {
+    width: 1px;
+    height: 60%;
+    margin-left: 7px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+    animation: stem 0.5s linear infinite;
+}
+
+@keyframes stem {
+    0% {
+        opacity: 1;
+    }
+    65% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+#rain .rain .splat {
+    width: 15px;
+    height: 10px;
+    border-top: 2px dotted rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 1;
+    transform: scale(0);
+    display: block;
+}
+
+#rain .rain .splat.active{
+    animation: splat 0.5s linear infinite;
+
+}
+
+
+@keyframes splat {
+    0% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    90% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
 #animation2 {
     background-color: transparent;
     width: 100vw;
@@ -341,4 +624,5 @@
         right: 20px
     }
 }
+
 
