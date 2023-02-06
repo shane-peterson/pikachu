@@ -1,0 +1,621 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "Avenir Next", "Avenir", sans-serif;
+    height: 100%;
+    overflow: hidden;
+}
+
+#menuToggle {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-top: 50px;
+    margin-left: 50px;
+
+    z-index: 11;
+    user-select: none;
+}
+
+#menuToggle input {
+    display: none;
+}
+
+#menuToggle #menu {
+    border-radius: 5px;
+    position: absolute;
+    width: 200px;
+    padding: 65px 50px 50px 50px;
+    list-style-type: none;
+    background: #ededed;
+    -webkit-font-smoothing: antialiased;
+    transform-origin: 0 0;
+}
+
+#menuToggle #menu li {
+    margin: 10px 0;
+    padding: 10px 0;
+    font-size: 22px;
+    text-transform: capitalize;
+}
+
+@media (min-width: 500px) {
+    #menuToggle #menu {
+        margin: 0 0 0 -50px;
+        opacity: 0.5;
+    }
+
+    #menuToggle #menu li {
+        color: #232323;
+        transition: color 0.3s ease;
+        cursor: pointer;
+    }
+
+    #menuToggle #menu li:hover {
+        color: tomato;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    #menuToggle input {
+        display: block;
+        width: 40px;
+        height: 32px;
+        position: absolute;
+        top: -5px;
+        left: -70px;
+        opacity: 0;
+        z-index: 12;
+        -webkit-touch-callout: none;
+    }
+
+
+    #menuToggle span {
+        display: block;
+        width: 33px;
+        height: 4px;
+        margin-left: -40px;
+        margin-bottom: 5px;
+        position: relative;
+
+        background: #cdcdcd;
+        border-radius: 3px;
+
+        z-index: 11;
+
+        transform-origin: 4px 0;
+
+        transition: transform 0.3s linear,
+        background 0.3s linear,
+        opacity 0.3s linear,
+        margin-left 0.3s linear;
+    }
+
+
+    #menuToggle span:nth-last-child(2) {
+        transform-origin: 0 100%;
+    }
+
+
+    #menuToggle input:checked ~ span {
+        opacity: 1;
+        transform: rotate(45deg) translate(-2px, -1px);
+        background: #232323;
+    }
+
+    #menuToggle input:checked ~ span:nth-last-child(3) {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.2, 0.2);
+    }
+
+
+    #menuToggle input:checked ~ span:nth-last-child(2) {
+        transform: rotate(-45deg) translate(0, -1px);
+    }
+
+
+    #menuToggle #menu {
+        margin: -50px 0 0 -50px;
+        transform: translate(-100%, 0);
+        transition: transform 0.3s linear;
+    }
+
+    #menuToggle input:checked {
+        left: 100px
+    }
+
+    #menuToggle input:checked ~ span {
+        margin-left: 100px;
+
+    }
+
+    #menuToggle input:checked ~ #menu {
+        transform: none;
+    }
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(15deg);
+
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+
+}
+
+@media (max-width: 500px) {
+    #sidebar {
+        opacity: 1;
+    }
+}
+
+#rain .rain {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+#rain .rain.back-row {
+    display: block;
+    z-index: 1;
+    bottom: 60px;
+    opacity: 0.5;
+}
+
+#rain .rain.front-row {
+    bottom: 0;
+}
+
+#rain .rain .drop {
+    position: absolute;
+    bottom: 100%;
+    width: 15px;
+    height: 120px;
+    animation: drop 0.5s linear infinite;
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(0vh);
+    }
+    75% {
+        transform: translateY(90vh);
+    }
+    100% {
+        transform: translateY(90vh);
+    }
+}
+
+#rain .rain .stem {
+    width: 1px;
+    height: 60%;
+    margin-left: 7px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+    animation: stem 0.5s linear infinite;
+}
+
+@keyframes stem {
+    0% {
+        opacity: 1;
+    }
+    65% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+#rain .rain .splat {
+    width: 15px;
+    height: 10px;
+    border-top: 2px dotted rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 1;
+    transform: scale(0);
+    display: block;
+}
+
+#rain .rain .splat.active{
+    animation: splat 0.5s linear infinite;
+
+}
+
+
+@keyframes splat {
+    0% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    90% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
+#animation2 {
+    background-color: transparent;
+    width: 100vw;
+    height: 50vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 21;
+}
+
+#animation2 .overall {
+    display: inline-block;
+    position: relative;
+    transform: translateX(100px);
+    animation: walk infinite 60s linear;
+}
+
+#animation2 .overall .head {
+    background-color: #333;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+}
+
+#animation2 .overall .head::before {
+    content: "";
+    display: block;
+    background-color: #fff;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 6px;
+    transition: all 0.3s linear;
+}
+
+#animation2 .overall .head::after {
+    content: "";
+    display: block;
+    background-color: #fff;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    transition: all 0.3s linear;
+}
+
+
+#animation2 .overall .body {
+    position: relative;
+}
+
+#animation2 .overall .body .torso {
+    background-color: #333;
+    width: 40px;
+    height: 120px;
+    border-radius: 100%;
+    position: relative;
+    transform: skewY(-30deg)
+}
+
+#animation2 .overall .body .torso::before {
+    content: "";
+    display: block;
+    background-color: #333;
+    width: 25px;
+    height: 30px;
+    position: absolute;
+    border-radius: 50%;
+    transform: rotate(100deg);
+    margin-bottom: -5px;
+    right: 12px;
+    bottom: 2px;
+
+}
+
+#animation2 .overall .body .hand1 {
+    background-color: #333;
+    width: 5px;
+    height: 100px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform-origin: top;
+    transform: rotate(45deg);
+    animation: hand1-wave infinite 3s linear;
+}
+
+#animation2 .overall .body .hand1::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 8px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    transform: translateX(-30%);
+}
+
+#animation2 .overall .body .hand2 {
+    border: 5px solid #333;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-radius: 30px;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform-origin: top;
+}
+
+#animation2 .overall .body .hand2::before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+}
+
+#animation2 .overall .body .hand2 .umbrella {
+    position: relative;
+
+}
+
+#animation2 .overall .body .hand2 .umbrella .canopy {
+    background-color: #333;
+    width: 160px;
+    height: 80px;
+    border-radius: 80px 80px 0 0;
+    transform: scaleY(0.2);
+    position: absolute;
+    top: -150px;
+    left: -40px;
+}
+
+#animation2 .overall .body .hand2 .umbrella .canopy::before {
+    content: "";
+    display: block;
+    background-color: #666;
+    width: inherit;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+
+}
+
+#animation2 .overall .body .hand2 .umbrella .shaft {
+    background-color: #333;
+    opacity: 0.8;
+    height: 170px;
+    width: 5px;
+    position: absolute;
+    bottom: -38px;
+    right: 0;
+}
+
+
+#animation2 .overall .body .hand2 .umbrella .shaft::before {
+    content: "";
+    background-color: #333;
+    display: block;
+    width: 7px;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    right: -1px
+}
+
+#animation2 .overall .body .hand2 .umbrella .shaft::after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 3px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: -1px;
+    left: 0;
+}
+
+
+#animation2 .overall .stick1 {
+    position: absolute;
+    background-color: #333;
+    width: 5px;
+    height: 120px;
+    bottom: -110px;
+    left: 10px;
+    transform-origin: top;
+    animation: stick1-wave infinite 3s linear;
+}
+
+#animation2 .overall .stick1::before {
+    content: "";
+    display: block;
+    border-radius: 20px;
+    width: 18px;
+    height: 6px;
+    background-color: #333;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+#animation2 .overall .stick2 {
+    position: absolute;
+    background-color: #333;
+    width: 5px;
+    height: 110px;
+    bottom: -90px;
+    left: 25px;
+    transform-origin: top;
+    animation: stick2-wave infinite 3s linear;
+}
+
+
+#animation2 .overall .stick2::before {
+    content: "";
+    display: block;
+    border-radius: 20px;
+    width: 18px;
+    height: 6px;
+    background-color: #333;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+
+}
+
+
+@keyframes hand1-wave {
+    0% {
+        transform: rotate(0deg)
+    }
+    25% {
+        transform: rotate(-80deg)
+    }
+    50% {
+        transform: rotate(0deg)
+    }
+    75% {
+        transform: rotate(90deg)
+    }
+    100% {
+        transform: rotate(0deg)
+    }
+}
+
+
+@keyframes stick1-wave {
+    0% {
+        transform: rotate(0deg)
+    }
+    25% {
+        transform: rotate(-20deg)
+    }
+    50% {
+        transform: rotate(0deg)
+    }
+    75% {
+        transform: rotate(20deg)
+    }
+    100% {
+        transform: rotate(0deg)
+    }
+}
+
+@keyframes stick2-wave {
+    0% {
+        transform: rotate(0deg)
+    }
+    25% {
+        transform: rotate(20deg)
+    }
+    50% {
+        transform: rotate(0deg)
+    }
+    75% {
+        transform: rotate(-20deg)
+    }
+    100% {
+        transform: rotate(0deg)
+    }
+}
+
+@keyframes walk {
+    0% {
+        transform: translateX(0vw) skewX(0deg);
+    }
+    40% {
+        transform: translateX(95vw) skewX(0deg);
+    }
+    50% {
+        transform: translateX(100vw) skewX(-15deg);
+    }
+    65% {
+        transform: translateX(130vw) skewX(-25deg);
+    }
+    69% {
+        transform: translateX(100vw) skewX(-15deg);
+    }
+    70% {
+        transform: translateX(95vw) skewX(0deg);
+    }
+    90% {
+        transform: translateX(-40vw) skewX(0deg);
+    }
+    100% {
+        transform: translateX(0vw) skewX(0deg);
+    }
+}
+
+
+@media (min-width: 500px) {
+    #animation2 .overall {
+        cursor: pointer;
+    }
+
+    #animation2 .overall:hover > .head:before {
+        width: 5px;
+        height: 5px;
+        right: 10px
+    }
+
+    #animation2 .overall:hover > .head:after {
+        right: 20px
+    }
+}
+
+
